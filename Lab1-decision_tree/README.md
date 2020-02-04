@@ -39,6 +39,7 @@ Both the example are normal, but the entropy is different. We know that the larg
 > Use the function `averageGain` (defined in `dtree.py`) to calculate the expected information gain corresponding to each of the six attributes. Note that the attributes are represented as instances of the `class Attribute` (defined in `monkdata.py`) which you can access via `m.attributes[0]`, ..., `m.attributes[5]`. Based on the results, which attribute should be used for splitting the examples at the root node?
 
 <b>Information Gain</b>
+
 |     | A1 | A2 | A3 | A4 | A5 | A6 |
 |-----|----|----|----|----|----|----|
 |Monk1|0.075273|0.005838|0.004708|0.026312|**0.287031**|0.000758|
@@ -59,6 +60,7 @@ Choose the maximization of information gain, so the entropy will be minimized.
 Because if we are more certainty to select the answner, the more information we obtain.
 
 <b>Entropy</b>
+
 |          | 1      | 2      | 3      | 4      |
 |----------|--------|--------|--------|--------|
 |Monk1 - A5|0.000000|0.938315|0.948078|0.908178|
@@ -83,6 +85,7 @@ print(d.check(t, m.monk1test))
 Explain the results you get for the training and test datasets.
 
 <b>Accuracy</b>
+
 |     | Train | Test     |
 |-----|-------|----------|
 |Monk1| 1.0   | 0.828704 |
