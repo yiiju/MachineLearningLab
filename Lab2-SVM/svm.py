@@ -5,25 +5,24 @@ import numpy as np
 import math
 import test
 
-C = 10000
-X = 3
-Y = 3
-KERNELTYPE = 'rbf'
-P = 3
-GAMMA = 2
-
+C = 1000
+X = 5
+Y = 5
+KERNELTYPE = 'linear'
+P = 2
+SIGMA = 1
 
 '''Kernel Functions'''
-def kernel(x, y, type=KERNELTYPE):
+def kernel(x, y, type=KERNELTYPE, p=P, sigma=SIGMA):
     if type == 'linear':
         return np.dot(x, np.array(y).T)
     elif type == 'polynomial':
-        return np.power(np.dot(x, np.array(y).T) + 1, P)
+        return np.power(np.dot(x, np.array(y).T) + 1, p)
     elif type == 'rbf':
         # Only one point of x and y, looks like x = [X_x, X_y] and y = [Y_x, Y_y]
         if len(x) == 2 and len(y) == 2:
             li = np.power(x - y, 2)
-            dist = -sum(li) / (2 * math.pow(GAMMA,2))
+            dist = -sum(li) / (2 * math.pow(sigma,2))
             k = math.exp(dist)
         # Only one point of x or y
         elif len(x) == 2 or len(y) == 2:
@@ -31,13 +30,13 @@ def kernel(x, y, type=KERNELTYPE):
             if len(y) == 2:
                 x, y = y, x
             li = np.power([x - j for j in y], 2)
-            dist = -np.array([sum(li[i]) for i in range(len(li))]) / (2 * math.pow(GAMMA,2))
+            dist = -np.array([sum(li[i]) for i in range(len(li))]) / (2 * math.pow(sigma,2))
             k = [math.exp(dist[i]) for i in range(len(dist))]
         # Multiple x and y, 
         # looks like x = [[X0_x, X0_y], [X1_x, X1_y], ..., ] and y = [[Y0_x, Y0_y], [Y1_x, Y1_y], ..., ]
         else:
             li = np.power([[x[i] - j for j in y] for i in range(len(x))], 2)
-            dist = -np.array([[sum(li[i][j]) for j in range(len(li[1]))] for i in range(len(li[0]))]) / (2 * math.pow(GAMMA,2))
+            dist = -np.array([[sum(li[i][j]) for j in range(len(li[1]))] for i in range(len(li[0]))]) / (2 * math.pow(sigma,2))
             k = [[math.exp(dist[i][j]) for j in range(len(dist[1]))] for i in range(len(dist[0]))]
         return k
     else:
@@ -69,7 +68,7 @@ def plot():
     ygrid = np.linspace(-Y, Y)
     grid = np.array([[indicator(x, y) for x in xgrid] for y in ygrid])
     plt.contour(xgrid, ygrid, grid, (-1.0, 0.0, 1.0), colors=('red', 'black', 'blue'), linewidths=(1, 3, 1))
-    plt.savefig('svmplot.pdf') # Save a copy in a file
+    # plt.savefig('./pdf/svmplot.pdf') # Save a copy in a file
     plt.show()
 
 if __name__== "__main__":
@@ -91,4 +90,7 @@ if __name__== "__main__":
         nonzero_inputs.append(x[1])
         nonzero_targets.append(x[2])
 
+    # plt.title('Polynomial (p=2, C=1000)')
+    # plt.title('RBF (sigma=1, C=1)')
+    plt.title('Linear (C=1000)')
     plot()
