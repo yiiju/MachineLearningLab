@@ -12,4 +12,4 @@
 
 [Lab2 - Support Vector Machines](./Lab2-SVM)
 
-Lab3 - Bayes Classifiers and Boosting
+[Lab3 - Bayes Classifiers and Boosting](./Lab3-BayesianLearning_Boosting)
