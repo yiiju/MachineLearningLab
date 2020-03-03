@@ -4,7 +4,6 @@
 # Lab 3: Bayes Classifier and Boosting
 import numpy as np
 from scipy import misc
-from imp import reload
 from labfuns import *
 import random
 
@@ -135,8 +134,11 @@ plotGaussian(X,labels,mu,sigma)
 # testClassifier(BayesClassifier(), dataset='vowel', split=0.7)
 
 
+title = 'Naive Bayes Classifier on the Iris Dataset'
+plotBoundary(BayesClassifier(), title, dataset='iris',split=0.7)
 
-# plotBoundary(BayesClassifier(), dataset='iris',split=0.7)
+title = 'Naive Bayes Classifier on the Vowel Dataset'
+plotBoundary(BayesClassifier(), title, dataset='vowel',split=0.7)
 
 
 # ## Boosting functions to implement
@@ -174,7 +176,7 @@ def trainBoost(base_classifier, X, labels, T=10):
         if error:
             alpha = (np.log(1-error) - np.log(error))/2
         else:
-            alpha = 0
+            alpha = float('Inf')
         wOld = wCur
         for i in range(Npts):
             if i in error_idx:
@@ -248,8 +250,11 @@ class BoostClassifier(object):
 #testClassifier(BoostClassifier(BayesClassifier(), T=10), dataset='vowel',split=0.7)
 
 
+title = 'Naive Bayes Classifier with Adaboost on the Iris Dataset'
+plotBoundary(BoostClassifier(BayesClassifier()), title, dataset='iris',split=0.7)
 
-#plotBoundary(BoostClassifier(BayesClassifier()), dataset='iris',split=0.7)
+title = 'Naive Bayes Classifier with Adaboost on the Vowel Dataset'
+plotBoundary(BoostClassifier(BayesClassifier()), title, dataset='vowel',split=0.7)
 
 
 # Now repeat the steps with a decision tree classifier.
@@ -270,12 +275,19 @@ class BoostClassifier(object):
 #testClassifier(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='vowel',split=0.7)
 
 
+title = 'Decision Tree Classifier on the Iris Dataset'
+plotBoundary(DecisionTreeClassifier(), title, dataset='iris',split=0.7)
 
-#plotBoundary(DecisionTreeClassifier(), dataset='iris',split=0.7)
+
+title = 'Decision Tree Classifier with Adaboost on the Iris Dataset'
+plotBoundary(BoostClassifier(DecisionTreeClassifier(), T=10), title, dataset='iris',split=0.7)
+
+title = 'Decision Tree Classifier on the Vowel Dataset'
+plotBoundary(DecisionTreeClassifier(), title, dataset='vowel',split=0.7)
 
 
-
-#plotBoundary(BoostClassifier(DecisionTreeClassifier(), T=10), dataset='iris',split=0.7)
+title = 'Decision Tree Classifier with Adaboost on the Vowel Dataset'
+plotBoundary(BoostClassifier(DecisionTreeClassifier(), T=10), title, dataset='vowel',split=0.7)
 
 
 # ## Bonus: Visualize faces classified using boosted decision trees
