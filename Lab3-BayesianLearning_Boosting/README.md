@@ -79,85 +79,101 @@ The left boundary looks good to separate class 0 will others. Since class 1 and 
 
     **Bayes classifier**
 
-    Final mean classification in iris dataset:
-
+    Final mean classification in iris dataset and vowel dataset:
     <table align="center">
         <tr>
-            <th>Classifier</th>
-            <th>Accuracy</th>
-            <th>Standard Deviation</th>
+            <th>Iris Dataset</th>
+            <th>Vowel Dataset</th>
         </tr>
         <tr>
-            <td>basic classifier</td>
-            <td>89</td>
-            <td>4.16</td>
-        </tr>
-        <tr>
-            <td>boosted classifier</td>
-            <td>94.1</td>
-            <td>6.72</td>
-        </tr>
-    </table>
-
-    Final mean classification in vowel dataset:
-
-    <table align="center">
-        <tr>
-            <th>Classifier</th>
-            <th>Accuracy</th>
-            <th>Standard Deviation</th>
-        </tr>
-        <tr>
-            <td>basic classifier</td>
-            <td>64.7</td>
-            <td>4.03</td>
-        </tr>
-        <tr>
-            <td>boosted classifier</td>
-            <td>80.2</td>
-            <td>3.52</td>
+            <td>
+                <table align="center">
+                    <tr>
+                        <th>Classifier</th>
+                        <th>Accuracy</th>
+                        <th>Standard Deviation</th>
+                    </tr>
+                    <tr>
+                        <td>basic classifier</td>
+                        <td>89</td>
+                        <td>4.16</td>
+                    </tr>
+                    <tr>
+                        <td>boosted classifier</td>
+                        <td>94.1</td>
+                        <td>6.72</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table align="center">
+                    <tr>
+                        <th>Classifier</th>
+                        <th>Accuracy</th>
+                        <th>Standard Deviation</th>
+                    </tr>
+                    <tr>
+                        <td>basic classifier</td>
+                        <td>64.7</td>
+                        <td>4.03</td>
+                    </tr>
+                    <tr>
+                        <td>boosted classifier</td>
+                        <td>80.2</td>
+                        <td>3.52</td>
+                    </tr>
+                </table>
+            </td>
         </tr>
     </table>
 
     **Decision tree classifier**
 
-    Final mean classification in iris dataset:
-
+    Final mean classification in iris dataset and vowel dataset:
     <table align="center">
         <tr>
-            <th>Classifier</th>
-            <th>Accuracy</th>
-            <th>Standard Deviation</th>
+            <th>Iris Dataset</th>
+            <th>Vowel Dataset</th>
         </tr>
         <tr>
-            <td>basic classifier</td>
-            <td>92.4</td>
-            <td>3.71</td>
-        </tr>
-        <tr>
-            <td>boosted classifier</td>
-            <td>94.6</td>
-            <td>3.65</td>
-        </tr>
-    </table>
-
-    Final mean classification in vowel dataset:
-
-    <table align="center">
-        <tr>
-            <th>Classifier</th>
-            <th>Accuracy</th>
-            <th>Standard Deviation</th>
-        </tr>
-        <tr>
-            <td>basic classifier</td>
-            <td>64.1</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>boosted classifier</td>
-            <td>86.7</td>
-            <td>2.96</td>
+            <td>
+                <table align="center">
+                    <tr>
+                        <th>Classifier</th>
+                        <th>Accuracy</th>
+                        <th>Standard Deviation</th>
+                    </tr>
+                    <tr>
+                        <td>basic classifier</td>
+                        <td>92.4</td>
+                        <td>3.71</td>
+                    </tr>
+                    <tr>
+                        <td>boosted classifier</td>
+                        <td>94.6</td>
+                        <td>3.65</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table align="center">
+                    <tr>
+                        <th>Classifier</th>
+                        <th>Accuracy</th>
+                        <th>Standard Deviation</th>
+                    </tr>
+                    <tr>
+                        <td>basic classifier</td>
+                        <td>64.1</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>boosted classifier</td>
+                        <td>86.7</td>
+                        <td>2.96</td>
+                    </tr>
+                </table>
+            </td>
         </tr>
     </table>
 
@@ -171,22 +187,22 @@ The left boundary looks good to separate class 0 will others. Since class 1 and 
 
 > If you had to pick a classifier, naive Bayes or a decision tree or the boosted versions of these, which one would you pick? Motivate from the following criteria:
 
-• Outliers
+1. Outliers
 
-Naive Bayes without boosted version. Because the decision tree will look into all the data points and try to fit all the situations, this might lead to overfitting in outliers. The boosted version will increase the weight in misclassified points, so the outlier will become more important and lead to overfitting.
+    Naive Bayes without boosted version. Because the decision tree will look into all the data points and try to fit all the situations, this might lead to overfitting in outliers. The boosted version will increase the weight in misclassified points, so the outlier will become more important and lead to overfitting.
 
-• Irrelevant inputs: part of the feature space is irrelevant
+2.  Irrelevant inputs: part of the feature space is irrelevant
 
-Decision Tree. Because the decision tree is to separate data points by choosing one feature at one time, it can only choose the one has higher information gain and relate to the result. However, Naive Bayes will consider all the features.
+    Decision Tree. Because the decision tree is to separate data points by choosing one feature at one time, it can only choose the one has higher information gain and relate to the result. However, Naive Bayes will consider all the features.
 
-• Predictive power
+3. Predictive power
 
-Decision Tree with boosted version. It has the best performance in prediction. (See above result)
+    Decision Tree with boosted version. It has the best performance in prediction. (See above result)
 
-• Mixed types of data: binary, categorical or continuous features, etc.
+4. Mixed types of data: binary, categorical or continuous features, etc.
 
-Because the design of both classifiers is not be limited in some kinds of features, both of them can use on binary and categorical features. However, the decision tree can not choose the continuous feature since it is difficult to separate data points into different branches.
+    Because the design of both classifiers is not be limited in some kinds of features, both of them can use on binary and categorical features. However, the decision tree can not choose the continuous feature since it is difficult to separate data points into different branches.
 
-• Scalability: the dimension of the data, D, is large or the number of instances, N, is large, or both.
+5. Scalability: the dimension of the data, D, is large or the number of instances, N, is large, or both.
 
-Decision Tree with boosted version. From the above experience, the desicion tree with boosted version has the best accuracy in vowel dataset (the number of instances is larger than iris dataset)
+    Decision Tree with boosted version. From the above experience, the desicion tree with boosted version has the best accuracy in vowel dataset (the number of instances is larger than iris dataset)
